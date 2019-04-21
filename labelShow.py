@@ -20,7 +20,8 @@ class LabelShow():
             for user_index in clu:
                 clu_array += array_user[user_index, :]
             des = np.argsort(-clu_array)
-            hot_category_index.append(list(des[0: min(int(0.01 * len(des)), 3)]))
+            hot_category_index.append(list(des[0: min(len(clu), 4)]))
+        print(hot_category_index)
         return hot_category_index
 
     def get_label(self):

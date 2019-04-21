@@ -29,10 +29,8 @@ class FastSearchCluster(object):
 
         self.cluster_temp = []  # mark the cluster_center for every point
         self.cluster = []  # the final cluster
-        self.cluster_upper_bound = []
-        self.cluster_hole = []
 
-    def __initCluster__(self):
+    def __initCluster(self):
         """
         init cluster_temp for all the center point
         need:
@@ -196,12 +194,11 @@ class FastSearchCluster(object):
         self.calculate_gamma()
 
     def get_cluster(self):
-        self.__initCluster__()
+        self.__initCluster()
         rho_des_index, cluster_center = self.rho_des_index, self.cluster_center
         for index in rho_des_index:
             if index not in cluster_center:
                 self.cluster_temp[index] = self.cluster_temp[self.master[index]]
-        del self.master
         for index in range(len(cluster_center)):
             self.cluster.append(np.where(self.cluster_temp == cluster_center[index])[0])
         for index, cluster in enumerate(self.cluster):
